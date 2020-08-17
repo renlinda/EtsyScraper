@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import requests, csv
 import re
 
-
 def getSoup(link):
     nolink=True #repeat until internet connection works and request goes through
     while nolink:        
@@ -26,14 +25,15 @@ def remove_emoji(string):
                            u"\U000024C2-\U0001F251"
                            "]+", flags=re.UNICODE)
     return emoji_pattern.sub(r'', string)
-       
+
+#replace with your desired link
+url = "https://www.etsy.com/ca/search?q=tree%20painting"
+
 master = open('Etsy_Scraped.csv','w', newline= '')
 mast = csv.writer(master)
 mast.writerow(["listing_id","listing_name","listing_link","display_img","shop_name","price","free_shipping","shop_rating","num_shop_reviews"])
 data = {}
 count = 0
-#replace with your desired link
-url = "https://www.etsy.com/ca/search?q=tree%20painting"
 
 #get data in the 69 pages
 for i in range(1,70):
